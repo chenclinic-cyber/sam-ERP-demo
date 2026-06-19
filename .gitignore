@@ -1,0 +1,6 @@
+*.xlsx
+*.xls
+*.csv
+erp_data.json
+DEMO-ERP/
+reference/
