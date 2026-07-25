@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>靚優 · ERP 營運儀表板</title>
+<script src="device.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 :root{--gold-l:#E8C87A;--gold:#C9A24B;--gold-d:#B8860B;--ink:#2B2B2B;--ink2:#4a4a4a;
@@ -80,7 +81,7 @@ footer{text-align:center;color:var(--grey);font-size:12px;margin-top:30px}
 <header><div class="wrap">
  <div class="brand"><div class="mark">優</div><div>
    <h1>靚優健康醫學美容診所</h1><div class="sub">ERP 營運儀表板 · Operations Dashboard</div></div></div>
- <div class="meta">資料來源：<b>DEMO-ERP</b><br>產製日期 <b id="gen"></b></div>
+ <div class="meta">資料來源：<b>DEMO-ERP</b><br>產製日期 <b id="gen"></b><span id="nbline"></span></div>
 </div></header>
 <div class="wrap">
  <div class="kpis" id="kpis"></div>
@@ -133,6 +134,8 @@ const fmtDate=s=>s.slice(0,4)+'/'+s.slice(4,6)+'/'+s.slice(6,8);
 const fmtMon=s=>s.slice(0,4)+'/'+s.slice(4,6);
 const GOLD='#C9A24B',GOLDL='#E8C87A',GOLDD='#B8860B',INK='#4a4a4a';
 document.getElementById('gen').textContent=D.generated;
+if(window.NB_NAME){document.title=window.NB_NAME+' · 靚優 ERP';
+ document.getElementById('nbline').innerHTML='<br>來源電腦 <b>'+window.NB_NAME+'</b>';}
 
 document.getElementById('kpis').innerHTML=KPIS.map((k,i)=>
  `<div class="kpi"><div class="label">${k[0]}</div>
