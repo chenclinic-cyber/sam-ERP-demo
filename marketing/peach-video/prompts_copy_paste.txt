@@ -1,0 +1,99 @@
+================================================================
+水蜜桃醫美影片 — AI 生成 Prompt 複製包
+每段已將「角色設定」合併進去，可直接整段貼入
+Kling / Hailuo / Veo / Runway 的 image-to-video 或 text-to-video。
+建議流程：先用 Midjourney / 即夢生成定裝照 → 每鏡用同一張圖當首幀。
+================================================================
+
+---------------- SHOT 1 (0-4s) 自信進場 ----------------
+An anthropomorphic peach lady, round velvety peach body covered in fine
+soft fuzz (peach fuzz clearly visible), one green leaf and a small stem
+on top of her head like a chic hair accessory, glamorous long eyelashes,
+rosy pink eyeshadow, glossy pink lips, slender elegant human legs,
+feminine hands. Pixar-style hyperrealistic 3D render, soft cinematic
+lighting, luxury aesthetic clinic environment with marble floors, warm
+wood tones and cream interiors. Vertical 9:16 format. The fuzzy peach
+lady wearing a fluffy pastel pink fur coat and pink high heels, carrying
+a small designer handbag, confidently pushes open the wooden double
+doors of a luxury aesthetic clinic and walks toward the camera down a
+marble hallway, hips swaying elegantly. Camera: slow dolly backward at
+eye level. Her fine peach fuzz catches the warm light, clearly visible
+all over her body. Reception desk blurred in the background.
+
+---------------- SHOT 2 (4-8s) 諮詢躺床 ----------------
+An anthropomorphic peach lady, round velvety peach body covered in fine
+soft fuzz (peach fuzz clearly visible), one green leaf and a small stem
+on top of her head like a chic hair accessory, glamorous long eyelashes,
+rosy pink eyeshadow, glossy pink lips, slender elegant human legs,
+feminine hands. Pixar-style hyperrealistic 3D render, soft cinematic
+lighting, luxury aesthetic clinic environment with marble floors, warm
+wood tones and cream interiors. Vertical 9:16 format. The peach lady
+lies back on a white leather treatment bed in a bright clinic room,
+wearing black protective laser goggles, relaxed and smiling slightly.
+Close-up shots of her velvety fuzzy peach skin in soft light, every tiny
+hair visible. Medical laser device with screen visible beside the bed.
+Camera: slow push-in from mid shot to close-up.
+
+---------------- SHOT 3 (8-13s) 雷射除毛 ★核心 ----------------
+An anthropomorphic peach lady, round velvety peach body covered in fine
+soft fuzz (peach fuzz clearly visible), one green leaf and a small stem
+on top of her head like a chic hair accessory, glamorous long eyelashes,
+rosy pink eyeshadow, glossy pink lips, slender elegant human legs,
+feminine hands. Pixar-style hyperrealistic 3D render, soft cinematic
+lighting, luxury aesthetic clinic environment with marble floors, warm
+wood tones and cream interiors. Vertical 9:16 format. A gloved hand in
+blue nitrile gloves guides a sleek laser handpiece emitting a soft
+white-blue glow across the peach lady's fuzzy surface. Wherever the
+laser passes, the fine fuzz vanishes and the skin transforms into
+glossy, dewy, smooth rosy-pink peach skin. Split visual: left half
+still fuzzy and matte, right half already silky smooth and luminous.
+Tiny wisps of fuzz drift away like dust in the light. Camera: locked-off
+frontal medium close-up, subtle slow zoom.
+
+---------------- SHOT 4 (13-16s) 保養按摩 ----------------
+An anthropomorphic peach lady, round velvety peach body covered in fine
+soft fuzz (peach fuzz clearly visible), one green leaf and a small stem
+on top of her head like a chic hair accessory, glamorous long eyelashes,
+rosy pink eyeshadow, glossy pink lips, slender elegant human legs,
+feminine hands. Pixar-style hyperrealistic 3D render, soft cinematic
+lighting, luxury aesthetic clinic environment with marble floors, warm
+wood tones and cream interiors. Vertical 9:16 format. Two hands in blue
+gloves gently massage a translucent glowing serum onto the peach lady's
+now-smooth glossy skin. Her surface looks juicy, plump and hydrated
+with a dewy glass-skin sheen. She has her eyes closed in bliss, long
+lashes resting. Soft spa music mood, warm diffused lighting. Camera:
+top-down 45-degree angle, slow drift.
+
+---------------- SHOT 5 (16-20s) 蛻變亮相 ----------------
+An anthropomorphic peach lady, round velvety peach body with perfectly
+smooth, glossy, dewy rosy-pink skin with a luminous glass-skin glow,
+one green leaf and a small stem on top of her head like a chic hair
+accessory, glamorous long eyelashes, rosy pink eyeshadow, glossy pink
+lips, slender elegant human legs, feminine hands. Pixar-style
+hyperrealistic 3D render, soft cinematic lighting, luxury aesthetic
+clinic environment with marble floors, warm wood tones and cream
+interiors. Vertical 9:16 format. The transformed peach lady, now silky
+smooth and radiantly juicy, pauses at the clinic doorway, glances back
+over her shoulder at the camera, flips the green leaf on her head
+playfully, winks and smiles, then struts out in her pink heels. Golden
+hour light spills through the doorway. Camera: medium shot, slight low
+angle for confidence.
+
+---------------- NEGATIVE PROMPT (每鏡共用) ----------------
+human face on realistic human body, distorted limbs, extra fingers,
+text, watermark, logo, blurry, low quality, horror, uncanny, needles,
+blood, medical gore
+
+---------------- 定裝照 Prompt (Midjourney / 即夢) ----------------
+Character design sheet, an anthropomorphic peach lady, round velvety
+peach body covered in fine soft fuzz, one green leaf and small stem on
+her head like a chic hair accessory, glamorous long eyelashes, rosy
+pink eyeshadow, glossy pink lips, slender elegant human legs, pink
+high heels, fluffy pastel pink fur coat, small designer handbag,
+Pixar-style hyperrealistic 3D render, soft studio lighting, full body,
+front view, cream background --ar 9:16
+
+---------------- 片尾文案 ----------------
+換一層肌，換一種自信
+Dream-U 靚優健康醫學美容診所
+療程效果因人而異
