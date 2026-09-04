@@ -29,10 +29,10 @@ for _ in range(26):
     draw.ellipse([x - r, y - r, x + r, y + r], fill=(GOLD_HI[0], GOLD_HI[1], GOLD_HI[2]))
 
 # logo
-logo = Image.open("logo_gold.png").convert("RGBA")
-lw = 560
+logo = Image.open("real_logo_gold.png").convert("RGBA")
+lw = 520
 logo_s = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
-img.paste(logo_s, ((W - lw) // 2, 120), logo_s)
+img.paste(logo_s, ((W - lw) // 2, 88), logo_s)
 
 def text_c(y, s, size, fill, tracking=0, font_path=FONT):
     f = ImageFont.truetype(font_path, size)
@@ -47,16 +47,16 @@ def text_c(y, s, size, fill, tracking=0, font_path=FONT):
         draw.text((W / 2, y), s, font=f, fill=fill, anchor="ma")
 
 # tagline
-text_c(300, "剝 去 歲 月 ・ 煥 然 新 生", 52, GOLD_HI)
-text_c(378, "抗衰逆齡 × 私密緊緻 專屬訂製療程", 30, (214, 200, 170))
+text_c(338, "剝 去 歲 月 ・ 煥 然 新 生", 52, GOLD_HI)
+text_c(408, "抗衰逆齡 × 私密緊緻 專屬訂製療程", 30, (214, 200, 170))
 
 # divider
-draw.line([(W / 2 - 260, 440), (W / 2 + 260, 440)], fill=GOLD_DIM, width=2)
-draw.ellipse([W / 2 - 5, 435, W / 2 + 5, 445], fill=GOLD)
+draw.line([(W / 2 - 260, 462), (W / 2 + 260, 462)], fill=GOLD_DIM, width=2)
+draw.ellipse([W / 2 - 5, 457, W / 2 + 5, 467], fill=GOLD)
 
 # CTA button
 bw, bh = 480, 84
-bx, by = (W - bw) // 2, 480
+bx, by = (W - bw) // 2, 496
 for i in range(3):
     draw.rounded_rectangle([bx - i, by - i, bx + bw + i, by + bh + i],
                            radius=bh // 2 + i, outline=GOLD, width=1)
@@ -75,7 +75,7 @@ f = ImageFont.truetype(FONT, 40)
 draw.text((W / 2, by + bh / 2 - 2), "立即預約諮詢", font=f, fill=(40, 28, 8), anchor="mm")
 
 # bottom line
-text_c(600, "私訊預約 ｜ 名額有限 ｜ 靚優診所", 26, (170, 158, 132))
+text_c(614, "私訊預約 ｜ 名額有限 ｜ 靚優健康醫學美容診所", 26, (170, 158, 132))
 
 img.save("endcard.png")
 print("endcard saved", img.size)

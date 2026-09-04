@@ -36,10 +36,10 @@ dec = sp.Popen(["ffmpeg", "-v", "error", "-i", SRC,
 enc = sp.Popen([
     "ffmpeg", "-y", "-v", "error",
     "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", "24", "-i", "-",
-    "-i", "logo_330.png",
+    "-i", "logo_overlay.png",
     "-filter_complex",
     "[0:v]delogo=x=925:y=8:w=350:h=84,delogo=x=1112:y=552:w=116:h=106[d];"
-    "[d][1:v]overlay=930:10",
+    "[d][1:v]overlay=954:10",
     "-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p",
     "main.mp4"], stdin=sp.PIPE)
 
