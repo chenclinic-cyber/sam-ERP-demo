@@ -58,8 +58,8 @@ def load_logo():
 def load_doctor(circle_d=560):
     im = Image.open(os.path.join(OUT_DIR, "assets/doctor.jpg")).convert("RGB")
     w, h = im.size
-    side = int(w * 0.86)
-    cx, cy = w // 2, int(h * 0.30)
+    side = w  # 取全寬,臉在圓內佔比較小
+    cx, cy = w // 2, int(h * 0.32)
     box = (cx - side // 2, max(0, cy - side // 2),
            cx + side // 2, max(0, cy - side // 2) + side)
     im = im.crop(box).resize((circle_d, circle_d), Image.LANCZOS)
@@ -503,9 +503,9 @@ def shot5(t, p):
         logo = logo.copy()
         logo.putalpha(logo.split()[3].point(lambda v: int(v * fade)))
     img.alpha_composite(logo, (int(W / 2 - lw / 2), int(H * 0.075)))
-    ds = int(430 * (0.85 + 0.15 * ease(p * 2.5)))
+    ds = int(300 * (0.85 + 0.15 * ease(p * 2.5)))
     doc = DOCTOR.resize((ds, ds), Image.LANCZOS)
-    dy = int(H * 0.30)
+    dy = int(H * 0.315)
     ring = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     dr = ImageDraw.Draw(ring)
     dr.ellipse([W / 2 - ds / 2 - 10, dy - 10, W / 2 + ds / 2 + 10, dy + ds + 10],
@@ -520,19 +520,19 @@ def shot5(t, p):
     # 兩顆小寫實水果陪襯
     if p > 0.22:
         aa = ease((p - 0.22) * 4)
-        yb = H * 0.575 + (1 - aa) * 30
-        put_fruit(img, PEACH, W * 0.22, yb, 52, wrinkle=0.0, gloss=1.0,
+        yb = H * 0.50 + (1 - aa) * 30
+        put_fruit(img, PEACH, W * 0.26, yb, 48, wrinkle=0.0, gloss=1.0,
                   rot=0.02 * t, warm=0.4)
-        put_fruit(img, ORANGE, W * 0.78, yb + 6, 48, wrinkle=0.0, gloss=1.0,
+        put_fruit(img, ORANGE, W * 0.74, yb + 6, 44, wrinkle=0.0, gloss=1.0,
                   rot=-0.02 * t, warm=0.4)
     d = ImageDraw.Draw(img)
     a2 = int(255 * ease((p - 0.18) * 3))
     if a2 > 0:
-        for txt, fs, yy, col in (("撫平歲月痕跡", 58, H * 0.685, (110, 82, 52)),
-                                 ("澎回青春光采", 58, H * 0.685 + 78, (110, 82, 52)),
-                                 ("靚優健康醫學美容診所", 34, H * 0.685 + 190, (150, 118, 78)),
+        for txt, fs, yy, col in (("撫平歲月痕跡", 58, H * 0.625, (110, 82, 52)),
+                                 ("澎回青春光采", 58, H * 0.625 + 78, (110, 82, 52)),
+                                 ("靚優健康醫學美容診所", 34, H * 0.625 + 195, (150, 118, 78)),
                                  ("Dream-U Health Aesthetic Medicine Clinic", 20,
-                                  H * 0.685 + 244, (168, 140, 104))):
+                                  H * 0.625 + 250, (168, 140, 104))):
             f = font(fs)
             b = d.textbbox((0, 0), txt, font=f)
             d.text((W / 2 - (b[2] - b[0]) / 2, yy), txt, font=f, fill=col + (a2,))
