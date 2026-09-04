@@ -59,7 +59,7 @@ img.paste(btn, (bx, by), m)
 f = ImageFont.truetype(FONT, 56)
 draw.text((W / 2, by + bh / 2 - 2), "立即預約諮詢", font=f, fill=(40, 28, 8), anchor="mm")
 
-text_c(1530, "私訊預約 ｜ 名額有限", 36, (170, 158, 132))
+text_c(1530, "私訊預約", 36, (170, 158, 132))
 text_c(1595, "靚優健康醫學美容診所", 36, (170, 158, 132))
 
 img.save("endcard_v.png")

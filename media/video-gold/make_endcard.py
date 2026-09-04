@@ -75,7 +75,7 @@ f = ImageFont.truetype(FONT, 40)
 draw.text((W / 2, by + bh / 2 - 2), "立即預約諮詢", font=f, fill=(40, 28, 8), anchor="mm")
 
 # bottom line
-text_c(614, "私訊預約 ｜ 名額有限 ｜ 靚優健康醫學美容診所", 26, (170, 158, 132))
+text_c(614, "私訊預約 ｜ 靚優健康醫學美容診所", 26, (170, 158, 132))
 
 img.save("endcard.png")
 print("endcard saved", img.size)
