@@ -54,20 +54,32 @@ def load_logo():
 LOGO = load_logo()
 
 
-def make_logo_chip():
-    """右上角白底圓角章 + 真 Logo,蓋掉亂碼 Logo 區 [945,15]-[1245,135]。"""
-    cw, ch = 300, 120
-    chip = Image.new("RGBA", (cw, ch), (0, 0, 0, 0))
-    d = ImageDraw.Draw(chip)
-    d.rounded_rectangle([0, 0, cw, ch], radius=18, fill=(255, 255, 255, 242),
-                        outline=(226, 200, 150, 255), width=2)
-    lw = 250
+def make_logo_overlay():
+    """去背 Logo + 柔和白光暈(保持在任何背景上可讀),無白底章。"""
+    lw = 260
     logo = LOGO.resize((lw, int(lw * LOGO.size[1] / LOGO.size[0])), Image.LANCZOS)
-    chip.alpha_composite(logo, ((cw - lw) // 2, (ch - logo.size[1]) // 2))
-    return chip
+    pad = 30
+    ov = Image.new("RGBA", (lw + pad * 2, logo.size[1] + pad * 2), (0, 0, 0, 0))
+    halo = Image.new("RGBA", ov.size, (0, 0, 0, 0))
+    white = Image.new("RGBA", logo.size, (255, 255, 255, 255))
+    white.putalpha(logo.split()[3])
+    halo.alpha_composite(white, (pad, pad))
+    halo = halo.filter(ImageFilter.GaussianBlur(7))
+    halo.putalpha(halo.split()[3].point(lambda v: int(v * 0.75)))
+    ov.alpha_composite(halo)
+    ov.alpha_composite(logo, (pad, pad))
+    return ov
 
 
-LOGO_CHIP = make_logo_chip()
+LOGO_OV = make_logo_overlay()
+LOGO_BOX = (938, 6, 1258, 150)  # 原亂碼 Logo 區,先模糊融背
+
+
+def apply_logo(img):
+    region = img.crop(LOGO_BOX).filter(ImageFilter.GaussianBlur(28))
+    region = region.filter(ImageFilter.GaussianBlur(28))
+    img.paste(region, LOGO_BOX)
+    img.alpha_composite(LOGO_OV, (952, 14))
 
 
 def elliptical_mask(size, cx, cy, rx, ry, feather=40):
@@ -238,13 +250,13 @@ def process_frame(img, i):
         if a >= 1.0:
             return card
         base = img.copy()
-        base.alpha_composite(LOGO_CHIP, (945, 15))
+        apply_logo(base)
         return Image.blend(base, card, a)
     if BLISTER_FIX[0] <= t <= BLISTER_FIX[1]:
         fix_blister(img, t)
     if SUB_FIX[0] <= t <= SUB_FIX[1]:
         fix_subtitle(img)
-    img.alpha_composite(LOGO_CHIP, (945, 15))
+    apply_logo(img)
     return img
 
 
