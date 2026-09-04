@@ -55,17 +55,16 @@ def load_logo():
     return im.crop(im.getbbox())
 
 
-def load_doctor(circle_d=560):
+def load_doctor(height=760):
+    """全身照(含頭與身體),圓角直式卡。"""
     im = Image.open(os.path.join(OUT_DIR, "assets/doctor.jpg")).convert("RGB")
     w, h = im.size
-    side = w  # 取全寬,臉在圓內佔比較小
-    cx, cy = w // 2, int(h * 0.32)
-    box = (cx - side // 2, max(0, cy - side // 2),
-           cx + side // 2, max(0, cy - side // 2) + side)
-    im = im.crop(box).resize((circle_d, circle_d), Image.LANCZOS)
-    mask = Image.new("L", (circle_d, circle_d), 0)
-    ImageDraw.Draw(mask).ellipse([0, 0, circle_d, circle_d], fill=255)
-    out = Image.new("RGBA", (circle_d, circle_d), (0, 0, 0, 0))
+    tw = int(w * height / h)
+    im = im.resize((tw, height), Image.LANCZOS)
+    rad = int(height * 0.07)
+    mask = Image.new("L", (tw, height), 0)
+    ImageDraw.Draw(mask).rounded_rectangle([0, 0, tw, height], radius=rad, fill=255)
+    out = Image.new("RGBA", (tw, height), (0, 0, 0, 0))
     out.paste(im, (0, 0), mask)
     return out
 
@@ -148,9 +147,10 @@ class Fruit:
             wamp = np.full_like(hgt, wrinkle)
             gamp = np.full_like(hgt, gloss)
         else:
+            # 光束由左向右掃:左側(已掃過)光滑水亮,右側(未掃到)仍皺
             m = smoothstep_np((x - sweep) / 0.16 + 0.5)  # 右=1
-            wamp = wrinkle * (1 - m)
-            gamp = gloss * m
+            wamp = wrinkle * m
+            gamp = gloss * (1 - m)
         # 法線擾動(皺紋+毛孔)
         gy_, gx_ = np.gradient(hgt)
         py_, px_ = np.gradient(pore)
@@ -503,27 +503,30 @@ def shot5(t, p):
         logo = logo.copy()
         logo.putalpha(logo.split()[3].point(lambda v: int(v * fade)))
     img.alpha_composite(logo, (int(W / 2 - lw / 2), int(H * 0.075)))
-    ds = int(300 * (0.85 + 0.15 * ease(p * 2.5)))
-    doc = DOCTOR.resize((ds, ds), Image.LANCZOS)
-    dy = int(H * 0.315)
+    # 直式全身照(頭+身體),金色圓角框
+    dh = int(410 * (0.92 + 0.08 * ease(p * 2.5)))
+    dw = int(dh * DOCTOR.size[0] / DOCTOR.size[1])
+    doc = DOCTOR.resize((dw, dh), Image.LANCZOS)
+    dy = int(H * 0.275)
+    rad = int(dh * 0.07)
     ring = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     dr = ImageDraw.Draw(ring)
-    dr.ellipse([W / 2 - ds / 2 - 10, dy - 10, W / 2 + ds / 2 + 10, dy + ds + 10],
-               outline=(198, 162, 96, int(255 * fade)), width=6)
-    dr.ellipse([W / 2 - ds / 2 - 3, dy - 3, W / 2 + ds / 2 + 3, dy + ds + 3],
-               outline=(255, 252, 244, int(255 * fade)), width=3)
+    dr.rounded_rectangle([W / 2 - dw / 2 - 10, dy - 10, W / 2 + dw / 2 + 10, dy + dh + 10],
+                         radius=rad + 8, outline=(198, 162, 96, int(255 * fade)), width=5)
+    dr.rounded_rectangle([W / 2 - dw / 2 - 3, dy - 3, W / 2 + dw / 2 + 3, dy + dh + 3],
+                         radius=rad + 3, outline=(255, 252, 244, int(255 * fade)), width=3)
     if fade < 1:
         doc = doc.copy()
         doc.putalpha(doc.split()[3].point(lambda v: int(v * fade)))
-    img.alpha_composite(doc, (int(W / 2 - ds / 2), dy))
+    img.alpha_composite(doc, (int(W / 2 - dw / 2), dy))
     img.alpha_composite(ring)
-    # 兩顆小寫實水果陪襯
+    # 兩顆小寫實水果陪襯(照片下緣兩側)
     if p > 0.22:
         aa = ease((p - 0.22) * 4)
-        yb = H * 0.50 + (1 - aa) * 30
-        put_fruit(img, PEACH, W * 0.26, yb, 48, wrinkle=0.0, gloss=1.0,
+        yb = dy + dh * 0.82 + (1 - aa) * 30
+        put_fruit(img, PEACH, W / 2 - dw / 2 - 62, yb, 48, wrinkle=0.0, gloss=1.0,
                   rot=0.02 * t, warm=0.4)
-        put_fruit(img, ORANGE, W * 0.74, yb + 6, 44, wrinkle=0.0, gloss=1.0,
+        put_fruit(img, ORANGE, W / 2 + dw / 2 + 60, yb + 6, 44, wrinkle=0.0, gloss=1.0,
                   rot=-0.02 * t, warm=0.4)
     d = ImageDraw.Draw(img)
     a2 = int(255 * ease((p - 0.18) * 3))
