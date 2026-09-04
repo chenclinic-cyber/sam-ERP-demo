@@ -126,9 +126,9 @@ def make_endcard_base():
     import imageio_ffmpeg
     ff = imageio_ffmpeg.get_ffmpeg_exe()
     tmp = os.path.join(OUT_DIR, "_smooth_frame.png")
-    subprocess.run([ff, "-y", "-ss", "7.10", "-i", SRC, "-frames:v", "1", tmp,
+    subprocess.run([ff, "-y", "-ss", "7.05", "-i", SRC, "-frames:v", "1", tmp,
                     "-loglevel", "error"], check=True)
-    pe = Image.open(tmp).convert("RGB").crop((380, 120, 880, 620)).resize((330, 330), Image.LANCZOS)
+    pe = Image.open(tmp).convert("RGB").crop((410, 140, 850, 580)).resize((330, 330), Image.LANCZOS)
     os.remove(tmp)
     pmask = Image.new("L", (330, 330), 0)
     ImageDraw.Draw(pmask).rounded_rectangle([0, 0, 330, 330], radius=24, fill=255)

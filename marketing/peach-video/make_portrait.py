@@ -64,9 +64,9 @@ def get_cute_peach(size=220):
     import imageio_ffmpeg
     ff = imageio_ffmpeg.get_ffmpeg_exe()
     tmp = os.path.join(OUT_DIR, "_cute.png")
-    subprocess.run([ff, "-y", "-ss", "7.10", "-i", SRC, "-frames:v", "1", tmp,
+    subprocess.run([ff, "-y", "-ss", "7.05", "-i", SRC, "-frames:v", "1", tmp,
                     "-loglevel", "error"], check=True)
-    pe = Image.open(tmp).convert("RGB").crop((380, 120, 880, 620)).resize((size, size),
+    pe = Image.open(tmp).convert("RGB").crop((410, 140, 850, 580)).resize((size, size),
                                                                           Image.LANCZOS)
     os.remove(tmp)
     return pe
